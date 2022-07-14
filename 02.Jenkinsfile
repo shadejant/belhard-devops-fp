@@ -7,23 +7,21 @@ pipeline {
                 docker pull shadejant/speedtest:latest
                 '''
             }
-        }
-    }
+  }
         stage("run image") {
             steps {
                 sh '''
                 docker run -it shadejant/speedtest:latest
                 '''
             }
-        }
-    }
-        stage("run image") {
+  }
+        stage("ps") {
             steps {
                 sh '''
                 docker ps -a
                 '''
             }
-    }
+  }
     post { 
         always { 
             cleanWs()
