@@ -22,10 +22,10 @@ pipeline {
                 '''
             }
         }
+  }
     post { 
         always { 
             cleanWs()
         }
     }
-  }
 }
