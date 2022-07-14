@@ -11,7 +11,7 @@ pipeline {
         stage("run image") {
             steps {
                 sh '''
-                docker run -it shadejant/speedtest:latest
+                docker run shadejant/speedtest:latest
                 '''
             }
         }
