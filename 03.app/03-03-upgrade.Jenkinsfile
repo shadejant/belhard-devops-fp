@@ -16,17 +16,9 @@ pipeline {
                 sh "helm upgrade wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
             }
         }
-        stage("test") {
-            steps {
-                sh "curl http://bh-k3s"
-            }
-        }
     }
-    post { 
-        failure { 
-            sh "helm rollback wiki -n bh"
-        }
-		always { 
+    post {
+	always { 
             cleanWs()
         }
     }
