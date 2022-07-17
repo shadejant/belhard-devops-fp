@@ -20,7 +20,7 @@ pipeline {
     post { 
         always { 
             cleanWs()
-			sh "rm ~/.kube/config"
+            sh "rm ~/.kube/config"
         }
     }
 }
