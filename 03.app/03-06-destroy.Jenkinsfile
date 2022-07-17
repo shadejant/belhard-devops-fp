@@ -13,7 +13,9 @@ pipeline {
         }
         stage("uninsatll wiki") {
             steps {
-                sh "helm uninstall wiki -n bh"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "helm uninstall wiki -n bh"
+                }
             }
         }
         stage("destoy wiki") {
