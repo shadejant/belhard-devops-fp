@@ -9,7 +9,7 @@ pipeline {
         stage("destoy wiki") {
             steps {
                 sh "kubectl delete pvc data-wiki-postgresql-0 -n bh"
-				sh "kubectl delete namespace bh"
+		sh "kubectl delete namespace bh"
             }
         }
     }
