@@ -16,11 +16,6 @@ pipeline {
                 sh "helm install wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
             }
         }
-        stage("test") {
-            steps {
-                sh "curl http://bh-k3s"
-            }
-        }
     }
     post { 
         always { 
