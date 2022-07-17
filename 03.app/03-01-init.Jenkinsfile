@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
-        stage("use-context bh-k3s") {
+        stage("download progect from github") {
             steps {
-                sh "kubectl config use-context bh-k3s"
+                git branch: 'master', url: 'https://github.com/shadejant/belhard-devops-fp.git' 
+            }
+        }
+        stage("install .kube/config file") {
+            steps {
+                sh "cp 02.k3s/bh-k3s.yaml ~/.kube/config"
             }
         }
         stage("create ns") {
@@ -11,10 +16,12 @@ pipeline {
                 sh "kubectl create namespace bh"
             }
         }
+
     }
     post { 
         always { 
             cleanWs()
+			sh "rm ~/.kube/config"
         }
     }
 }

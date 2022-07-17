@@ -6,9 +6,9 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/shadejant/belhard-devops-fp.git' 
             }
         }
-        stage("use-context bh-k3s") {
+        stage("install .kube/config file") {
             steps {
-                sh "kubectl config use-context bh-k3s"
+                sh "cp 02.k3s/bh-k3s.yaml ~/.kube/config"
             }
         }
         stage("insatll wiki") {
@@ -20,6 +20,7 @@ pipeline {
     post { 
         always { 
             cleanWs()
+			sh "rm ~/.kube/config"
         }
     }
 }
