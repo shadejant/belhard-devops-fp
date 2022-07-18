@@ -3,7 +3,7 @@ pipeline {
   stages {
         stage("download progect from github") {
             steps {
-                git branch: 'master', url: 'https://github.com/shadejant/belhard-devops-fp.git' 
+                git branch: 'master', url: 'git@github.com:shadejant/belhard-devops-fp.git' 
             }
         }
         stage("ansible playbook") {
