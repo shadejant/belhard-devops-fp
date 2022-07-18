@@ -14,7 +14,7 @@ pipeline {
         stage("modify bh-k3s.yaml") {
             steps {
                 sh "sed -i -e 's/127.0.0.1/bh-k3s/g' 02.k3s/bh-k3s.yaml" 
-                sh "git commit -am"
+                sh "git commit -a"
             }
         }
     }
