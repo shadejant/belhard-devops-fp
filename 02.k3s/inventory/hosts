@@ -1,0 +1,4 @@
+k3s-onenode ansible_ssh_host=bh-k3s ansible_ssh_user=k3s
+
+[k3s-all]
+k3s-onenode
