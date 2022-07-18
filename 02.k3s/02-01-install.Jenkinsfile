@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+        stage("placeholder yaml") {
+            steps {
+                sh "touch 02.k3s/bh-k3s.yaml"
+            }
+        }
         stage("download progect from github") {
             steps {
                 git branch: 'master', url: 'https://github.com/shadejant/belhard-devops-fp.git' 
@@ -14,7 +19,10 @@ pipeline {
         stage("modify bh-k3s.yaml") {
             steps {
                 sh "sed -i -e 's/127.0.0.1/bh-k3s/g' 02.k3s/bh-k3s.yaml" 
-                sh "git commit -a"
+                sh 
+                '''
+                git commit -am "update cluster yaml"
+                '''
             }
         }
     }
