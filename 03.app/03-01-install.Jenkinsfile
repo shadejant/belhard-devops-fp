@@ -11,9 +11,14 @@ pipeline {
                 sh "cp 02.k3s/bh-k3s.yaml ~/.kube/config"
             }
         }
-        stage("uninsatll wiki") {
+        stage("create ns") {
             steps {
-                sh "helm uninstall wiki -n bh"
+                sh "kubectl create namespace bh"
+            }
+        }
+        stage("insatll wiki") {
+            steps {
+                sh "helm install wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
             }
         }
     }

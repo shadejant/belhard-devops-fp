@@ -11,9 +11,15 @@ pipeline {
                 sh "cp 02.k3s/bh-k3s.yaml ~/.kube/config"
             }
         }
-        stage("insatll wiki") {
+        stage("uninsatll wiki") {
             steps {
-                sh "helm install wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
+                sh "helm uninstall wiki -n bh"
+            }
+        }
+        stage("destoy wiki") {
+            steps {
+                sh "kubectl delete pvc data-wiki-postgresql-0 -n bh"
+                sh "kubectl delete namespace bh"
             }
         }
     }
