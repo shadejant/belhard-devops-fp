@@ -11,9 +11,14 @@ pipeline {
                 sh "cp 02.k3s/bh-k3s.yaml ~/.kube/config"
             }
         }
+		stage("create ns") {
+            steps {
+                sh "kubectl create namespace bh --dry-run=client -o yaml | kubectl apply -f -"
+            }
+        }
         stage("upgrade wiki") {
             steps {
-                sh "helm upgrade wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
+                sh "helm upgrade -i wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
             }
         }
     }
