@@ -1,13 +1,6 @@
 pipeline {
   agent any
   stages {
-        stage("Initial config") {
-            steps {
-                script {
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
-                }
-            }
-        }
         stage("download progect from github") {
             steps {
                 git branch: 'master', url: 'https://github.com/shadejant/belhard-devops-fp.git' 
