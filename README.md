@@ -5,6 +5,5 @@
 03 wikijs: установка с помощью helm chart
 
 доделать бэкап постгреса
-Объединить install/update, добавить тест с автооткатом	
-	helm install update
-	curl smoke test
+
+обавить тест с автооткатом(curl smoke test)
