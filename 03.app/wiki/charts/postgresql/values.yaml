@@ -107,7 +107,7 @@ postgresqlUsername: postgres
 ## PostgreSQL password
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
 ##
-postgresqlPassword: 12345678
+postgresqlPassword: "12345678"
 
 ## PostgreSQL password using existing secret
 ## existingSecret: secret
