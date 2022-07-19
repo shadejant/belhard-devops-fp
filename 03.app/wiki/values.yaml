@@ -69,7 +69,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: 123
+    - host: bh-k3s
       paths:
         - path: "/"
           pathType: Prefix
