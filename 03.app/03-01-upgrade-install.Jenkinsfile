@@ -18,7 +18,7 @@ pipeline {
         }
         stage("upgrade wiki") {
             steps {
-                sh "helm upgrade -i wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
+                sh "helm upgrade wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
             }
         }
     }
