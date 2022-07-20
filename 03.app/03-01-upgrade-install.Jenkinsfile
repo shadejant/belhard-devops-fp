@@ -24,7 +24,7 @@ pipeline {
         stage("curl test") {
             steps {
                 sh "sleep 30"
-                sh "chmod +x 03.app/bin/smoketest.sh bh-k3s"
+                sh "chmod +x 03.app/bin/smoketest.sh"
                 sh "03.app/bin/smoketest.sh bh-k3s"
             }
         }
