@@ -11,7 +11,7 @@ pipeline {
                 sh "cp 02.k3s/bh-k3s.yaml ~/.kube/config"
             }
         }
-		stage("create ns") {
+	stage("create ns") {
             steps {
                 sh "kubectl create namespace bh --dry-run=client -o yaml | kubectl apply -f -"
             }
