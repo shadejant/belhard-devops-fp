@@ -1,0 +1,34 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: postgres-backup
+  namespace: bh
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 2
+  successfulJobsHistoryLimit: 1
+  schedule: "0 23 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: postgres-backup
+            image: postgres:11
+            command: ["/bin/sh"]
+            args: ["-c", 'echo "wiki-postgresql:5432:wiki:postgres:$DB_PASS" > ~/.pgpass && chmod 600 ~/.pgpass && pg_dump -U postgres -h wiki-postgresql -p 5432 -d wiki > /var/backups/backup-$(date +"%m-%d-%Y-%H-%M").sql']
+            env:
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: wiki-postgresql
+                  key: postgresql-password
+            volumeMounts:
+            - mountPath: /var/backups
+              name: postgres-storage
+          restartPolicy: Never
+          volumes:
+          - name: postgres-storage
+            hostPath:
+              path: /var/volumes/postgres-backups
+              type: DirectoryOrCreate

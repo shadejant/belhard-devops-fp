@@ -21,6 +21,11 @@ pipeline {
                 sh "helm upgrade -i wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
             }
         }
+		tage("cronjob for backup") {
+            steps {
+                sh "kubectl apply -f 03.app/postgres-backup.yaml"
+            }
+        }
     }
     post {
         always { 
