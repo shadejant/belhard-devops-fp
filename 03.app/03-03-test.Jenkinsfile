@@ -11,13 +11,19 @@ pipeline {
                 sh "cp 02.k3s/bh-k3s.yaml ~/.kube/config"
             }
         }
-        stage("rollback wiki") {
+        stage("curl test") {
             steps {
-                sh "helm rollback wiki -n bh"
+                sh "sleep 30"
+                sh "chmod +x 03.app/bin/smoketest.sh"
+                sh "03.app/bin/smoketest.sh bh-k3s"
             }
         }
     }
     post { 
+        failure {
+            echo "test fail. rollback"
+            sh "helm rollback wiki -n bh" 
+        }
         always { 
             cleanWs()
             sh "rm ~/.kube/config"

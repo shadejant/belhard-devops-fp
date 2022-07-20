@@ -21,15 +21,8 @@ pipeline {
                 sh "helm upgrade -i wiki 03.app/wiki/ --values 03.app/wiki/values.yaml -n bh"
             }
         }
-        stage("curl test") {
-            steps {
-                sh "sleep 30"
-                sh "chmod +x 03.app/bin/smoketest.sh"
-                sh "03.app/bin/smoketest.sh bh-k3s"
-            }
-        }
     }
-    post { 
+    post {
         always { 
             cleanWs()
             sh "rm ~/.kube/config"
