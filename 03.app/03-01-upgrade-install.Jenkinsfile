@@ -23,8 +23,8 @@ pipeline {
         }
         stage("curl test") {
             steps {
-	    	sh "sleep 30"
-                sh "03.app/bin/smoketest.sh 123.local"
+                sh "sleep 30"
+                sh "03.app/bin/smoketest.sh bh-k3s"
             }
         }
     }
